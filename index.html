@@ -21,7 +21,7 @@
 <body>
 <div id="error">
     <h1>🔒 入口无效</h1>
-    <p>请通过正确的谜题路径访问：<code>bjez2026.xyz/08241831</code></p >
+    <p>请通过正确的谜题路径访问：<code>bjez2026.xyz</code></p >
 </div>
 
 <div id="content" class="hidden">
@@ -32,7 +32,7 @@
     </div>
 
     <div id="memory" class="page active">
-        <h2>🎓 纪念主义</h2>
+        <h2>🎓 纪念主页</h2>
         <p>致2026届：<br>彩虹尽头的数字，带我们在此重逢。<br>愿此去繁花似锦，再相逢依旧如故。</p >
         <p style="color:#2c7da0;">—— 年级合照 2024.04.18 · 毕业典礼 2026.05.24 ——</p >
     </div>
@@ -57,12 +57,10 @@
 </div>
 
 <script>
-    function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
-    }
-
-    if (window.location.pathname === "/08241831") {
+    // 获取当前路径（例如 /08241831 或 /随便输入）
+    let path = window.location.pathname;
+    // 如果路径是 /08241831，则显示内容；否则显示“密码错误”
+    if (path === "/08241831") {
         document.getElementById("error").style.display = "none";
         document.getElementById("content").classList.remove("hidden");
     } else {
