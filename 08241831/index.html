@@ -1,1 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>2026届毕业纪念</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* 导航栏 */
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            padding: 20px 20px 0 20px;
+            background: white;
+            border-bottom: 2px solid #eef2f6;
+            flex-wrap: wrap;
+        }
+
+        .nav button {
+            background: transparent;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #4a5568;
+            cursor: pointer;
+            border-radius: 40px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .nav button:hover {
+            background: #f0f4f9;
+            color: #2c7da0;
+        }
+
+        .nav button.active {
+            background: #2c7da0;
+            color: white;
+            box-shadow: 0 4px 8px rgba(44,125,160,0.2);
+        }
+
+        /* 页面内容 */
+        .page {
+            display: none;
+            padding: 32px 28px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 纪念主页样式 */
+        .memory-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .memory-content h2 {
+            font-size: 2rem;
+            color: #1e3a5f;
+            margin-bottom: 20px;
+        }
+
+        .memory-date {
+            color: #2c7da0;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .memory-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #2d3e50;
+            background: #f8fafc;
+            padding: 28px;
+            border-radius: 28px;
+            margin: 20px 0;
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-style: italic;
+            color: #6c7a8e;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 24px;
+        }
+
+        /* 合影全集 - 网格布局 */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 16px;
+        }
+
+        .photo-card {
+            background: #f9fafb;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+
+        .photo-card img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-caption {
+            padding: 12px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #4b5563;
+            background: white;
+        }
+
+        /* 留言板 iframe 样式 */
+        .board-iframe {
+            width: 100%;
+            height: 650px;
+            border: none;
+            border-radius: 24px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .board-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-top: 16px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            .nav button {
+                padding: 8px 18px;
+                font-size: 0.9rem;
+            }
+            .page {
+                padding: 20px 16px;
+            }
+            .photo-grid {
+                gap: 16px;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            border-top: 1px solid #eef2f6;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <button id="btn-memory" class="active">📖 纪念主页</button>
+        <button id="btn-photos">📸 合影全集</button>
+        <button id="btn-board">💬 匿名留言板</button>
+    </div>
+
+    <!-- 纪念主页 -->
+    <div id="memory-page" class="page active">
+        <div class="memory-content">
+            <h2>🎓 纪念主页</h2>
+            <div class="memory-date">
+                年级合照 · 2024.04.18 &nbsp;&nbsp;|&nbsp;&nbsp; 毕业典礼 · 2026.05.24
+            </div>
+            <div class="memory-text">
+                <p>🌈 沿着彩虹的方向，我们在数字的尽头重逢。</p >
+                <p style="margin-top: 16px;">三十一声加油，八页签名，<br>
+                化作这个夏天的注脚。</p >
+                <p style="margin-top: 16px; font-weight: 500;">所有人都到达这里，<br>
+                就是我们重逢的那一天。</p >
+            </div>
+            <div class="signature">
+                —— 北京2026届全体毕业生
+            </div>
+        </div>
+    </div>
+
+    <!-- 合影全集 -->
+    <div id="photos-page" class="page">
+        <h2 style="text-align:center; margin-bottom:24px;">📸 同届毕业典礼合照大全</h2>
+        <div class="photo-grid" id="photo-grid">
+            <!-- 这里替换成你们自己的合照图片链接 -->
+            <!-- 示例图片来自 picsum，请替换为真实图片地址 -->
+            <div class="photo-card">
+                < img src="https://picsum.photos/id/20/400/300" alt="合照1">
+                <div class="photo-caption">年级大合影 · 2026.05</div>
+            </div>
+            <div class="photo-card">
+                < img src="https://picsum.photos/id/26/400/300" alt="合照2">
+                <div class="photo-caption">班主任与班委</div>
+            </div>
+            <div class="photo-card">
+                < img src="https://picsum.photos/id/28/400/300" alt="合照3">
+                <div class="photo-caption">操场毕业快乐瞬间</div>
+            </div>
+            <div class="photo-card">
+                < img src="https://picsum.photos/id/29/400/300" alt="合照4">
+                <div class="photo-caption">教室最后一课</div>
+            </div>
+        </div>
+        <p style="text-align:center; font-size:0.85rem; color:#6c7a8e; margin-top:24px;">
+            📷 更多照片持续收集，点击可放大（后续可加）
+        </p >
+    </div>
+
+    <!-- 匿名留言板 -->
+    <div id="board-page" class="page">
+        <h2 style="text-align:center; margin-bottom:16px;">💬 匿名留言板</h2>
+        <iframe src="https://www3.cbox.ws/box/?boxid=3555278&boxtag=2zO5SA" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
+        <p style="font-size:12px; color:gray;">留言无需登录，可匿名。珍惜回忆，友善发言。</p >
+        <div class="board-note">
+            ✨ 无需登录 · 匿名留言 · 所有回忆都将被珍藏
+        </div>
+    </div>
+
+    <footer>
+        北京二中2026届毕业纪念册
+    </footer>
+</div>
+
+<script>
+    // 页面切换逻辑
+    const btnMemory = document.getElementById('btn-memory');
+    const btnPhotos = document.getElementById('btn-photos');
+    const btnBoard = document.getElementById('btn-board');
+    const pageMemory = document.getElementById('memory-page');
+    const pagePhotos = document.getElementById('photos-page');
+    const pageBoard = document.getElementById('board-page');
+
+    function setActivePage(activePage) {
+        [pageMemory, pagePhotos, pageBoard].forEach(p => p.classList.remove('active'));
+        activePage.classList.add('active');
+
+        [btnMemory, btnPhotos, btnBoard].forEach(btn => btn.classList.remove('active'));
+        if (activePage === pageMemory) btnMemory.classList.add('active');
+        if (activePage === pagePhotos) btnPhotos.classList.add('active');
+        if (activePage === pageBoard) btnBoard.classList.add('active');
+    }
+
+    btnMemory.addEventListener('click', () => setActivePage(pageMemory));
+    btnPhotos.addEventListener('click', () => setActivePage(pagePhotos));
+    btnBoard.addEventListener('click', () => setActivePage(pageBoard));
+</script>
+</body>
+</html>
